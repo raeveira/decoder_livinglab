@@ -1,0 +1,29 @@
+name: Python CI - Game 3
+
+on:
+  push:
+    paths:
+      - 'game3/**'
+      - '.github/workflows/python-ci-game3.yml'
+  pull_request:
+    paths:
+      - 'game3/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.6'
+
+      - name: Install flake8
+        run: pip install flake8
+
+      - name: Run linter
+        run: flake8 game3/
